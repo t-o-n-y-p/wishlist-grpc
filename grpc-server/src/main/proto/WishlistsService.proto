@@ -1,0 +1,120 @@
+syntax = "proto3";
+
+package ru.otus.protobuf;
+
+option java_multiple_files = true;
+
+message Error {
+    string code = 1;
+    string message = 2;
+}
+
+/* wishlists */
+
+message GetWishlistsRequest {
+    string username = 1;
+}
+
+message CreateWishlistRequest {
+    string username = 1;
+    string title = 2;
+    optional string description = 3;
+}
+
+message UpdateWishlistRequest {
+    optional int64 id = 1;
+    optional string title = 2;
+    optional string description = 3;
+}
+
+message DeleteWishlistRequest {
+    optional int64 id = 1;
+}
+
+message WishlistResponse {
+    repeated Error errors = 1;
+    optional WishlistResponseItem item = 2;
+}
+
+message WishlistResponseItem {
+    int64 id = 1;
+    string title = 2;
+    optional string description = 3;
+}
+
+/* gifts */
+
+message GetGiftsRequest {
+    optional int64 wishlistId = 1;
+}
+
+message CreateGiftRequest {
+    optional int64 wishlistId = 1;
+    string title = 2;
+    optional int64 price = 3;
+    optional string description = 4;
+}
+
+message UpdateGiftRequest {
+    optional int64 id = 1;
+    optional string title = 2;
+    optional int64 price = 3;
+    optional string description = 4;
+    optional bool reserved = 5;
+}
+
+message DeleteGiftRequest {
+    optional int64 id = 1;
+}
+
+message GiftResponse {
+    repeated Error errors = 1;
+    optional GiftResponseItem item = 2;
+}
+
+message GiftResponseItem {
+    int64 id = 1;
+    string title = 2;
+    int64 price = 3;
+    optional string description = 4;
+    bool reserved = 5;
+}
+
+/* users */
+
+message GetUsersRequest {}
+
+message CreateUserRequest {
+    string username = 1;
+}
+
+message UserResponse {
+    repeated Error errors = 1;
+    optional UserResponseItem item = 2;
+}
+
+message UserResponseItem {
+    int64 id = 1;
+    string username = 2;
+}
+
+/* services */
+
+service WishlistsService {
+    rpc getWishlists(GetWishlistsRequest) returns (stream WishlistResponse);
+    rpc createWishlist(CreateWishlistRequest) returns (WishlistResponse);
+    rpc updateWishlist(UpdateWishlistRequest) returns (WishlistResponse);
+    rpc deleteWishlist(DeleteWishlistRequest) returns (WishlistResponse);
+}
+
+service GiftsService {
+    rpc getGifts(GetGiftsRequest) returns (stream GiftResponse);
+    rpc createGift(CreateGiftRequest) returns (GiftResponse);
+    rpc updateGift(UpdateGiftRequest) returns (GiftResponse);
+    rpc deleteGift(DeleteGiftRequest) returns (GiftResponse);
+}
+
+service UsersService {
+    rpc getUsers(GetUsersRequest) returns (stream UserResponse);
+    rpc createUser(CreateUserRequest) returns (UserResponse);
+}

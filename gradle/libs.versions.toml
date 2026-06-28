@@ -1,0 +1,32 @@
+[versions]
+springBoot = "4.1.0"
+dependency-management = "1.1.7"
+protobufPlugin = "0.9.5"
+mapstruct = "1.6.3"
+lombok-mapstruct-binding = "0.2.0"
+spotless = "7.0.3"
+lombok = "1.18.46"
+postgresql = "42.7.11"
+testcontainers-postgresql = "1.21.4"
+
+[libraries]
+mapstruct = { group = "org.mapstruct", name = "mapstruct", version.ref = "mapstruct" }
+mapstruct-processor = { group = "org.mapstruct", name = "mapstruct-processor", version.ref = "mapstruct" }
+lombok = { group = "org.projectlombok", name = "lombok", version.ref = "lombok" }
+lombok-mapstruct-binding = { group = "org.projectlombok", name = "lombok-mapstruct-binding", version.ref = "lombok-mapstruct-binding" }
+starter-data-jdbc = { group = "org.springframework.boot", name = "spring-boot-starter-data-jdbc" }
+spring-boot-testcontainers = { group = "org.springframework.boot", name = "spring-boot-testcontainers" }
+starter-validation = { group = "org.springframework.boot", name = "spring-boot-starter-validation" }
+starter-flyway = { group = "org.springframework.boot", name = "spring-boot-starter-flyway" }
+starter-grpc-server = { group = "org.springframework.boot", name = "spring-boot-starter-grpc-server" }
+starter-grpc-server-test = { group = "org.springframework.boot", name = "spring-boot-starter-grpc-server-test" }
+postgresql = { group = "org.postgresql", name = "postgresql", version.ref = "postgresql" }
+postgresql-flyway = { group = "org.flywaydb", name = "flyway-database-postgresql" }
+protobuf-java-util = { group = "com.google.protobuf", name = "protobuf-java-util" }
+testcontainers-postgresql = { group = "org.testcontainers", name = "postgresql", version.ref = "testcontainers-postgresql" }
+
+[plugins]
+protobuf = { id = "com.google.protobuf", version.ref = "protobufPlugin" }
+spring-boot = { id = "org.springframework.boot", version.ref = "springBoot" }
+dependency-management = { id = "io.spring.dependency-management", version.ref = "dependency-management" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
