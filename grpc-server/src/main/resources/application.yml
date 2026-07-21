@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://db:5432/wishlist
+    username: ${DB_USERNAME:usr}
+    password: ${DB_PASSWORD:pwd}
+    driver-class-name: org.postgresql.Driver
